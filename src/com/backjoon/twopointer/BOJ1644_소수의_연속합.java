@@ -1,35 +1,67 @@
 package com.backjoon.twopointer;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BOJ1644_소수의_연속합 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt();
-        boolean[] A = new boolean[N + 1];
+        int N = Integer.parseInt(br.readLine());
+        boolean[] A = new boolean[N + 2];
 
-        for (int i = 2; i < Math.sqrt(N); ) {
-            if (A[i]) continue;
-            for (int j = i; j <= N; j++) {
-                if (j % i == 0) {
-                    A[j] = true;
+        A[0] = A[1] = true;
+
+        for (int i = 2; i < N; i++) {
+            if (!A[i]) {
+                for (int j = i * i; j <= N; j += i) {
+                    if (j % i == 0) {
+                        A[j] = true;
+                    }
                 }
             }
         }
 
-        ArrayList<Integer> list = new ArrayList<>();
-/*
-        for (int i = 2; i <= N; i++) {
-            if (A[i] != 0) {
-                list.add(A[i]);
+        int start = 2;
+        int end = 2;
+        int sum = 2;
+        int cnt = 0;
+
+        while (end <= N) {
+//            System.out.println("start : " + start + ", end : " + end);
+            if (sum < N) {
+                end++;
+                while (A[end] && end < N) {
+                    end++;
+                }
+
+                if (!A[end]) {
+                    sum += end;
+                }
+            } else if (sum == N) {
+                cnt++;
+                end++;
+                while (A[end] && end < N) {
+                    end++;
+                }
+
+                if (!A[end]) {
+                    sum += end;
+                }
+            } else {
+                sum -= start;
+                start++;
+                while (A[start]) {
+                    start++;
+                }
+
             }
         }
-*/
 
+        System.out.println(cnt);
 
     }
 }
