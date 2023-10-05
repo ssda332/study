@@ -50,6 +50,5 @@ public class BOJ10816_숫자_카드_2 {
 
         Arrays.stream(C)
                 .forEach(System.out::println);
-
     }
 }

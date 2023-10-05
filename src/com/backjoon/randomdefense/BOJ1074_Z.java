@@ -24,7 +24,6 @@ public class BOJ1074_Z {
     static int z(int size, int r, int c) {
         int pow = (int) Math.pow(2, size);
         int half = pow / 2;
-        int result = 0;
 
         if (size == 0) return 0;
 
