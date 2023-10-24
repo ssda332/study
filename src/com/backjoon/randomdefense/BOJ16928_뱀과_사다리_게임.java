@@ -5,7 +5,6 @@ import java.util.*;
 
 public class BOJ16928_뱀과_사다리_게임 {
 
-    static int[] map = new int[101];
     static boolean[] visited = new boolean[101];
     static int[] dice = new int[] {1, 2, 3, 4, 5, 6};
     static ArrayList<Integer>[] ladderAndSnake;
@@ -50,14 +49,14 @@ public class BOJ16928_뱀과_사다리_게임 {
 
                 if (!ladderAndSnake[move].isEmpty()) {
                     int next = ladderAndSnake[move].get(0);
-                    if (next > 100) {
+                    if (next <= 100) {
                         visited[next] = true;
                         queue.add(new int[] {next, count + 1});
                     }
+                } else {
+                    queue.add(new int[] {move, count + 1});
+                    visited[move] = true;
                 }
-
-                queue.add(new int[] {move, count + 1});
-                visited[move] = true;
 
             }
         }

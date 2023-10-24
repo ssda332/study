@@ -59,6 +59,14 @@ public class BOJ1149_RGB거리 {
             D[N][rgb] = B[N] + Math.min(DP(N - 1, 0), DP(N - 1, 1));
         }
 
+
+
+
+
+
+
+
+
         return D[N][rgb];
 
     }
