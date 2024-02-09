@@ -37,16 +37,13 @@ public class BOJ2457_공주님의_정원 {
             flowers.add(new Flower(start, end));
         }
 
-        Collections.sort(flowers, new Comparator<Flower>() {
-            @Override
-            public int compare(Flower o1, Flower o2) {
-                if (o1.start == o2.start) return o1.end - o2.end;
-                return o1.start - o2.start;
-            }
+        Collections.sort(flowers, (o1, o2) -> {
+            if (o1.start == o2.start) return o1.end - o2.end;
+            return o1.start - o2.start;
         });
 
-//        flowers.stream().forEach(System.out::println);
-//        System.out.println("----------------");
+        flowers.stream().forEach(System.out::println);
+        System.out.println("----------------");
 
         int startDate = 301;
         int endDate = 1130;

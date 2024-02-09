@@ -4,23 +4,24 @@ import java.util.*;
 import java.io.*;
 
 public class TEST3 {
-    public static void main(String[] args) throws IOException {
+    public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int X = Integer.parseInt(st.nextToken());
+        StringBuilder sb = new StringBuilder();
+        int T = Integer.parseInt(br.readLine());
+        for (int t = 0; t < T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int R = Integer.parseInt(st.nextToken());
+            String str = st.nextToken();
 
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            int n = Integer.parseInt(st.nextToken());
-
-            if (n < X) {
-                bw.write(n + " ");
+            for (int i = 0; i < str.length(); i++) {
+                for (int j = 0; j < R; j++) {
+                    sb.append(str.charAt(i));
+                }
             }
+
+            sb.append("\n");
         }
 
-        bw.flush();
-        bw.close();
+        System.out.println(sb);
     }
 }
