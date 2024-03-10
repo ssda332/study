@@ -12,8 +12,6 @@ public class BOJ1325_효율적인_해킹 {
     static int[] ans;
 
     public static void main(String[] args) throws IOException {
-        // dfs = 10만개 재귀 = x 단방향으로 방문하는 노드수 체크
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         // n = 10000 m = 100000
 
@@ -28,26 +26,41 @@ public class BOJ1325_효율적인_해킹 {
 
         for (int i = 1; i <= N; i++) {
             A[i] = new ArrayList<>();
+            ans[i] = -1;
         }
 
         for (int i = 1; i <= M; i++) {
             st = new StringTokenizer(br.readLine());
 
-            int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
+            int start = Integer.parseInt(st.nextToken());
 
             A[start].add(end);
         }
 
         for (int i = 1; i <= N; i++) {
-            bfs(i);
-            visited = new boolean[N + 1];
+            Stack<Integer> stack = new Stack<>();
+            stack.push(i);
+
+            int cnt = 0;
+
+            while (!stack.isEmpty()) {
+                int pop = stack.pop();
+                ans[pop] = 0;
+
+                for (int next : A[pop]) {
+                    if (ans[next] == -1) {
+                        ans[i]++;
+                    }
+                }
+            }
         }
 
         StringBuilder sb = new StringBuilder();
-        int max = Arrays.stream(ans)
-                .max()
-                .getAsInt();
+        int max = 0;
+        for(int i : ans) {
+            max = Math.max(max, i);
+        }
 
         for (int i = 1; i <= N; i++) {
             if (ans[i] == max) {
@@ -59,21 +72,5 @@ public class BOJ1325_효율적인_해킹 {
 
     }
 
-    static void bfs(int n) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(n);
 
-        while (!queue.isEmpty()) {
-            int poll = queue.poll();
-            visited[poll] = true;
-
-            for (int i : A[poll]) {
-                if (!visited[i]) {
-                    queue.add(i);
-                    visited[i] = true;
-                    ans[i]++;
-                }
-            }
-        }
-    }
 }
