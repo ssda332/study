@@ -7,10 +7,6 @@ import java.util.StringTokenizer;
 
 public class BOJ14501_퇴사 {
 
-    static int[] D;
-    static int[] T;
-    static int[] P;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
