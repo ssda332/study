@@ -6,22 +6,11 @@ import java.io.*;
 public class TEST3 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int T = Integer.parseInt(br.readLine());
-        for (int t = 0; t < T; t++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int R = Integer.parseInt(st.nextToken());
-            String str = st.nextToken();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        long N = Long.parseLong(st.nextToken());
+        long M = Long.parseLong(st.nextToken());
 
-            for (int i = 0; i < str.length(); i++) {
-                for (int j = 0; j < R; j++) {
-                    sb.append(str.charAt(i));
-                }
-            }
+        System.out.println(Math.abs(N - M));
 
-            sb.append("\n");
-        }
-
-        System.out.println(sb);
     }
 }
