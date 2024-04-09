@@ -4,41 +4,41 @@ import java.io.*;
 import java.util.*;
 
 public class 연습장3 {
+
+    static String s1;
+    static String s2;
+    static Integer[][] DP;
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        Scanner sc = new Scanner(System.in);
+        s1 = sc.nextLine();
+        s2 = sc.nextLine();
 
-        int T = Integer.parseInt(st.nextToken());
-        StringBuilder sb = new StringBuilder();
+        int N = s1.length();
+        int M = s2.length();
+        DP = new Integer[N + 1][M + 1];
 
-        for (int t = 0; t < T; t++) {
-            int N = Integer.parseInt(br.readLine());
+        int answer = lcs(N, M);
+        System.out.println(answer);
+    }
 
-            int[][] A = new int[N + 1][3];
-            int[][] DP = new int[N + 1][3];
-
-            StringTokenizer st1 = new StringTokenizer(br.readLine());
-            StringTokenizer st2 = new StringTokenizer(br.readLine());
-
-            for (int i = 1; i <= N; i++) {
-                A[i][1] = Integer.parseInt(st1.nextToken());
-                A[i][2] = Integer.parseInt(st2.nextToken());
-            }
-
-            // DP[i][1] = Max(DP[i - 1][2], DP[i - 2][1], DP[i - 2][2]) + A[i][1]
-            // DP[i][2] = Max(DP[i - 1][1], DP[i - 2][1], DP[i - 2][2]) + A[i][2]
-
-            DP[1][1] = A[1][1]; DP[1][2] = A[1][2];
-
-            for (int i = 2; i <= N; i++) {
-                DP[i][1] = Math.max(DP[i - 1][2], Math.max(DP[i - 2][1], DP[i - 2][2])) + A[i][1];
-                DP[i][2] = Math.max(DP[i - 1][1], Math.max(DP[i - 2][1], DP[i - 2][2])) + A[i][2];
-            }
-
-            sb.append(Math.max(DP[N][1], DP[N][2])).append("\n");
-
+    static int lcs(int x, int y) {
+        if (x <= 0 || y <= 0) {
+            return 0;
         }
 
-        System.out.println(sb);
+        if (DP[x][y] == null) {
+            DP[x][y] = 0;
+
+            if (s1.charAt(x - 1) == s2.charAt(y - 1)) {
+                DP[x][y] = lcs(x - 1, y - 1) + 1;
+            } else {
+                DP[x][y] = Math.max(lcs(x - 1, y), lcs(x, y - 1));
+            }
+        }
+
+        return DP[x][y];
     }
+
+
 }
