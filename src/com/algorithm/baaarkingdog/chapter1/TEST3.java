@@ -1,16 +1,18 @@
 package com.algorithm.baaarkingdog.chapter1;
 
-import java.util.*;
 import java.io.*;
 
 public class TEST3 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        long N = Long.parseLong(st.nextToken());
-        long M = Long.parseLong(st.nextToken());
+        int N = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        int answer = 0;
 
-        System.out.println(Math.abs(N - M));
+        for (int i = 0; i < N; i++) {
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'|| str.charAt(i) == 'o' || str.charAt(i) == 'u') answer++;
+        }
 
+        System.out.println(answer);
     }
 }
