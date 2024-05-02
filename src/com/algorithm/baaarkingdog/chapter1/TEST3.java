@@ -1,18 +1,17 @@
 package com.algorithm.baaarkingdog.chapter1;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class TEST3 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        String str = br.readLine();
-        int answer = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        for (int i = 0; i < N; i++) {
-            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'|| str.charAt(i) == 'o' || str.charAt(i) == 'u') answer++;
-        }
+        System.out.println((parseInt(st.nextToken()) * parseInt(st.nextToken())) + (parseInt(st.nextToken()) * parseInt(st.nextToken())));
+    }
 
-        System.out.println(answer);
+    static Integer parseInt(String str) {
+        return Integer.parseInt(str);
     }
 }

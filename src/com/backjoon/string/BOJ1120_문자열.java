@@ -23,8 +23,6 @@ public class BOJ1120_문자열 {
             if (answer > result) answer = result;
         }
 
-//        dfs(A);
-
         System.out.println(answer);
     }
 
